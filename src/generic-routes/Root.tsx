@@ -6,6 +6,7 @@ import './Root.css';
 import { useFetchBreedsQuery } from '../features/dogs/api-slice';
 import DogList from '../components/DogList/DogList';
 import type { Dog } from '../features/dogs/dog-slice';
+import camelCaseKeys from 'camelcase-keys'; // TODO: probably a better way to do this. hmmm
 
 function Root() {
   const [numDogs, setNumDogs] = useState(5);
@@ -15,7 +16,7 @@ function Root() {
   const dispatch = useAppDispatch();
 
   const { data = [] } = useFetchBreedsQuery(numDogs); // isFetching in response for loading spinners
-  const dogList: Dog[] = data;
+  const dogList: Dog[] = camelCaseKeys(data, { deep: true });
   dispatch(setDogList(dogList));
 
   function handleSelectDog(dogId: number) {

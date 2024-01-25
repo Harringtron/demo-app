@@ -27,7 +27,6 @@ export const dogSlice = createSlice({
   initialState,
   reducers: {
     setDogList(state, action: PayloadAction<Dog[]>) {
-      console.log({ action });
       state.dogList = action.payload;
     },
     // immer makes state immutable and handles these state edits.
@@ -35,8 +34,6 @@ export const dogSlice = createSlice({
       state.selectedDog = state.dogList.find(
         (dog) => dog.id === action.payload
       );
-      // maybe do routing things?
-      // TODO: figure out routing
     },
     addDog(state, action: PayloadAction<Dog>) {
       state.dogList.push(action.payload);

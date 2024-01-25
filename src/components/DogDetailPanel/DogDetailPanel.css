@@ -1,0 +1,11 @@
+.dog-details-view {
+  width: auto;
+  height: auto;
+  & :not(h3, b) {
+    font-weight: normal;
+  }
+  &:hover {
+    cursor: default;
+    background-color: transparent;
+  }
+}
