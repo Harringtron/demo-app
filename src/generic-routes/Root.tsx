@@ -15,14 +15,7 @@ function Root() {
   const dispatch = useAppDispatch();
 
   const { data = [] } = useFetchBreedsQuery(numDogs); // isFetching in response for loading spinners
-  const dogList: Dog[] = data.map((breed) => {
-    return {
-      id: Number(breed.id),
-      name: breed.name,
-      imgUrl: breed.image.url,
-      temperament: breed.temperament,
-    };
-  });
+  const dogList: Dog[] = data;
   dispatch(setDogList(dogList));
 
   function handleSelectDog(dogId: number) {

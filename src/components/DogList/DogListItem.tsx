@@ -15,7 +15,7 @@ const DogListItem: React.FC<DogListItemProps> = ({ dog, onSelectDog }) => {
       >
         <div className="header-container">
           <img
-            src={dog.imgUrl}
+            src={dog.image.url}
             alt={dog.name}
             height={75}
           />

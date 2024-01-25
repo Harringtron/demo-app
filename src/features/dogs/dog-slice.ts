@@ -3,7 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type Dog = {
   id: number;
   name: string;
-  imgUrl?: string;
+  image: {
+    url: string;
+  };
   temperament?: string;
   bredFor?: string;
   lifeSpan?: string;

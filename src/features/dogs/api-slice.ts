@@ -1,16 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { Dog } from './dog-slice';
 
 const API_KEY =
   'live_2bT5BKqBthx1K31p0qHlqUN6Xc1OjreSzRR6jdDP4L52AvNfslN600WFpk30wqlL';
-
-interface Breed {
-  id: string;
-  name: string;
-  temperament: string;
-  image: {
-    url: string;
-  };
-}
 
 // type QueryParams = {
 //   limit: number;
@@ -28,7 +20,7 @@ export const dogsApiSlice = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchBreeds: builder.query<Breed[], number | void>({
+      fetchBreeds: builder.query<Dog[], number | void>({
         // TODO: come back to this and figure it out lol
         // query(queryParams: QueryParams = { limit: 10, page: 1 }) {
         //   const { limit, page } = queryParams;
@@ -38,8 +30,13 @@ export const dogsApiSlice = createApi({
           return `/breeds?limit=${limit}`;
         },
       }),
+      fetchBreed: builder.query<Dog, number>({
+        query(breedId) {
+          return `/breeds/${breedId}`;
+        },
+      }),
     };
   },
 });
 
-export const { useFetchBreedsQuery } = dogsApiSlice;
+export const { useFetchBreedsQuery, useFetchBreedQuery } = dogsApiSlice;
